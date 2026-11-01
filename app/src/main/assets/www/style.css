@@ -5483,3 +5483,17 @@ html.glass-native .c-dur {
 
 /* 배경 캔버스는 별도 합성 레이어로 고정해, 캔버스 갱신이 아래/위 DOM 의 다시 그리기를 유발하지 않게 한다. */
 /* (will-change 로 큰 캔버스를 별도 타일 레이어로 올리면 타일 경계가 격자 무늬로 보여 제거) */
+
+
+/* ════════════════════════════════════════════════════════
+   성능/편의 보강
+════════════════════════════════════════════════════════ */
+/* 미니 플레이어 진행바: 250ms 마다 width 가 바뀌는데 .25s 전환이 걸려 있으면 재생 내내 레이아웃 애니메이션이
+   쉬지 않고 돈다. 갱신 간격이 곧 전환 시간이라 끄면 눈에 보이는 차이는 없다(0.5px 미만 단계). */
+.bar-prog-fill { transition: none !important; }
+
+/* 가사 탐색(드래그/관성 스크롤) 중에는 활성 줄에서 멀어진 줄도 읽을 수 있게 한다.
+   (가로 전체화면의 5줄 밖 줄은 투명이라 스크롤해도 아무것도 안 보였다.) */
+.lyric-browsing .np-lyric-line:not(.active) { color: rgba(255,255,255,.42); }
+#np-ls-scroll.lyric-browsing .np-ls-lyric-line:not(.ls-active) { color: rgba(255,255,255,.42) !important; }
+.np-lyrics-scroll, .np-lv-scroll, #np-ls-scroll { overscroll-behavior: contain; touch-action: none; }
