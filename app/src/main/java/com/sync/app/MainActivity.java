@@ -395,8 +395,9 @@ public class MainActivity extends AppCompatActivity {
                     ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
             hideSystemUI();
         } else {
+            // 기본은 세로 고정(자동회전 없음). 가로는 NP 전체화면에서만 허용한다.
             setRequestedOrientation(
-                    ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+                    ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             showSystemUI();
         }
     }
